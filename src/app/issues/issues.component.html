@@ -1,7 +1,7 @@
 <div class="search-container">
   <mat-form-field>
     <input matInput type="text" placeholder="Enter your search queue"
-           #ctrl="ngModel" [ngModel]="searchString" (ngModelChange)="searchString$.next($event)">
+           #ctrl="ngModel" [ngModel]="currentSearchString" (ngModelChange)="searchString$.next($event)">
   </mat-form-field>
   <ng-container *ngIf="issuesLoading">
     <div>Your search results will appear here...</div>

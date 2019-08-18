@@ -16,7 +16,8 @@ export class IssuesComponent implements OnInit {
 
   public issues$: Observable<Issue[]>;
   public searchString$ = new Subject<string>();
-  private issuesLoading = false;
+  public issuesLoading = false;
+  public currentSearchString = '';
 
   ngOnInit() {
     this.issues$ = this.searchString$.pipe(
