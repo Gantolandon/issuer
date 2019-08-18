@@ -35,4 +35,8 @@ export class IssuesComponent implements OnInit {
     );
   }
 
+  onFavorite(issue: Issue) {
+    issue.starred = !issue.starred;
+  }
+
 }

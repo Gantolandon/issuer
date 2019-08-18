@@ -24,7 +24,12 @@
             </mat-chip-list>
             {{ issue.description }}
           </mat-card-content>
-          <mat-card-footer>Created: {{ issue.creationDate | date: 'short' }}</mat-card-footer>
+          <mat-card-footer>
+            <button mat-icon-button color="primary" (click)="onFavorite(issue)">
+              <mat-icon>{{ issue.starred ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+            Created: {{ issue.creationDate | date: 'short' }}
+          </mat-card-footer>
         </mat-card>
       </div>
       <div *ngIf="issues.length===0">We couldn't find any issue matching the search string. Please try a different one.</div>
