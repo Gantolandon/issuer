@@ -1,0 +1,33 @@
+<div class="search-container">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Enter your search queue"
+           #ctrl="ngModel" [ngModel]="searchString" (ngModelChange)="searchString$.next($event)">
+  </mat-form-field>
+  <ng-container *ngIf="issuesLoading">
+    <div>Your search results will appear here...</div>
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="issues$ | async as issues">
+    <ng-container *ngIf="!issuesLoading">
+      <div class="container">
+        <mat-card *ngFor="let issue of issues" class="container-card">
+          <mat-card-header>
+            <img mat-card-avatar src="{{ issue.author.avatar }}">
+            <mat-card-title><a href="{{issue.url}}">{{ issue.title }}</a></mat-card-title>
+            <mat-card-subtitle><a mat-flat-button href="{{ issue.author.profile }}">{{ issue.author.name }}</a></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-chip-list *ngIf="issue.labels.length">
+              <mat-chip *ngFor="let label of issue.labels">{{ label.name }}</mat-chip>
+            </mat-chip-list>
+            {{ issue.description }}
+          </mat-card-content>
+          <mat-card-footer>Created: {{ issue.creationDate | date: 'short' }}</mat-card-footer>
+        </mat-card>
+      </div>
+      <div *ngIf="issues.length===0">We couldn't find any issue matching the search string. Please try a different one.</div>
+    </ng-container>
+  </ng-container>
+</div>
