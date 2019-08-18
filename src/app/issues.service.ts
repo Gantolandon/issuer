@@ -17,7 +17,6 @@ export class IssuesService {
     options.headers = new HttpHeaders({ 'Content-Type': 'application/json'} );
     // options.headers = options.headers.append('Authorization', 'Basic ' + btoa('gantolandon:Raggok4485L'));
     options.params = this.getParams(searchString);
-    console.log(options);
     return options;
   }
 
@@ -35,7 +34,6 @@ export class IssuesService {
         map((issues) => issues.items),
         map((issues) => {
           let mappedIssues = _.map(issues, (issue) => {
-            console.log(issue);
             const internalIssue = new Issue();
             internalIssue.title = issue.title;
             internalIssue.description = issue.body;
