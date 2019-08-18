@@ -20,6 +20,7 @@ export class IssuesComponent implements OnInit {
 
   ngOnInit() {
     this.issues$ = this.searchString$.pipe(
+      map(str => str.trim()),
       distinctUntilChanged(),
       debounceTime(2000),
       filter((searchString) => searchString.length > 1),
@@ -46,7 +47,7 @@ export class IssuesComponent implements OnInit {
 
   onFavorite(issue: Issue) {
     issue.starred = !issue.starred;
-    let starredItemsArray = JSON.parse(localStorage.getItem('starred')) || [];
+    const starredItemsArray = JSON.parse(localStorage.getItem('starred')) || [];
     if (issue.starred) {
       starredItemsArray.push(issue.url);
     } else {
