@@ -15,7 +15,6 @@ export class IssuesService {
   getOptions = (searchString: string) => {
     const options = { headers: null, params: null };
     options.headers = new HttpHeaders({ 'Content-Type': 'application/json'} );
-    // options.headers = options.headers.append('Authorization', 'Basic ' + btoa('gantolandon:Raggok4485L'));
     options.params = this.getParams(searchString);
     return options;
   }
